@@ -82,7 +82,7 @@ a:hover{
     top: -5px;
 }
 
-@media all and (min-width: 768px){
+@media (min-width: 767px){
     .nav-item{
         display: block;
         width: auto;
