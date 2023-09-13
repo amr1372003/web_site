@@ -53,6 +53,17 @@ a:hover{
     text-align: center;
     order: 2;
     display: none;
+    border-bottom: 1px gray solid;
+}
+#last-item{
+    border-bottom: none;
+}
+.navbar .nav-item:hover{
+    background: gray;
+}
+.navbar .nav-item a:hover{
+    color: white;
+    font-style: bold;
 }
 
 .nav-item.active {
@@ -92,6 +103,7 @@ a:hover{
         display: block;
         width: auto;
         order: 1;
+        border-bottom: none;
     }
     .toggle{
         display: none;
