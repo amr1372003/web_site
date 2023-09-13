@@ -70,6 +70,7 @@ a:hover{
     height: 2px;
     width: 18px;
     position: relative;
+    margin-bottom: 5px;
 }
 .bars::before,.bars::after{
     background: #999;
@@ -79,6 +80,7 @@ a:hover{
     width: 18px;
     position: absolute;
     left: 0;
+    margin-bottom: 5px;
 }
 .bars::before{
     top: 5px;
