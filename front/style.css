@@ -49,7 +49,6 @@ a{
 .nav-item{
     width: 100%;
     text-align: center;
-    order: 2;
     display: none;
     border-bottom: 1px gray solid;
 }
