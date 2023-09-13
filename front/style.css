@@ -102,8 +102,19 @@ a{
     top: -5px;
 }
 
-@media (min-width: 767px){
-    .nav-item{
+@media (min-width: 676px){
+    body{
+        background: url(bg.jpg) no-repeat;
+        background-size: cover;
+        font-family: sans-serif;
+    }
+    .menu{
+        align-items: center;
+    }
+    .nav{
+        justify-content: space-between;
+    }
+    .menu .nav-item {
         display: block;
         width: auto;
         order: 1;
@@ -112,15 +123,15 @@ a{
         border-right: 1px solid gray;
         padding: 20px 20px 20px 20px;
     }
-    .toggle{
+    .toggle {
         display: none;
     }
     .logo{
         margin-left: auto;
         order: 3;
     }
+
     .menu li{
         padding: 15px 10px;
     }
-    
 }
