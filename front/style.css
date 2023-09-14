@@ -102,6 +102,38 @@ a{
     top: -5px;
 }
 
+.search{
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    width: 100%;
+    text-align: right;
+}
+.search-icon{
+    margin-right: 5px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    order: -1;
+}
+#formID {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+}
+#formID:hover{
+    background: white;
+}
+
+@media (min-width:801){
+    .logo{
+        order: 2;
+    }
+    .toggle{
+        order: 1;
+    }
+}
+
 @media (min-width: 676px){
     body{
         background: url(bg.jpg) no-repeat;
