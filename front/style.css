@@ -1,87 +1,101 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /*text-align: right;*/
 }
 
-body{
+body {
     font-family: sans-serif;
 }
 
-nav{
+nav {
     width: 100%;
-    background:  white;
+    background: white;
     padding: 5px 20px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
-ul{
+
+ul {
     list-style-type: none;
 }
-a{
+
+a {
     color: black;
     text-decoration: none;
 }
-.menu li{
+
+.menu li {
     font-size: 16px;
     padding: 15px 5px;
 }
-.menu li a{
+
+.menu li a {
     display: block;
 }
-.logo a{
+
+.logo a {
     font-size: 25px;
     font-weight: bold;
     font-family: "Noto Nastaliq Urdu";
 }
-.menu{
+
+.menu {
     display: flex;
     flex-wrap: wrap-reverse;
     justify-content: space-between;
     align-items: center;
 }
-.toggle{
+
+.toggle {
     order: 1;
 }
-.logo{
+
+.logo {
     order: 2;
 }
-.nav-item{
+
+.nav-item {
     width: 100%;
     text-align: center;
     display: none;
     border-top: 1px gray solid;
 }
-#active-site a{
+
+#active-site a {
     color: white;
-}
-.navbar .nav-item:hover{
-    background:lightgray;
 }
 
-#active-site{
+.navbar .nav-item:hover {
+    background: lightgray;
+}
+
+#active-site {
     background: gray;
 }
-.navbar .nav-item a:hover{
+
+.navbar .nav-item a:hover {
     color: white;
-    font-style: bold;
+    font-weight: bold;
 }
 
 .nav-item.active {
     display: block;
 }
 
-.toggle{
+.toggle {
     cursor: pointer;
 }
-.bars{
+
+.bars {
     background: #999;
     display: inline-block;
     height: 2px;
     width: 18px;
     position: relative;
 }
-.bars::before,.bars::after{
+
+.bars::before,
+.bars::after {
     background: #999;
     content: "";
     display: inline-block;
@@ -90,14 +104,16 @@ a{
     position: absolute;
     left: 0;
 }
-.bars::before{
+
+.bars::before {
     top: 5px;
 }
-.bars::after{
+
+.bars::after {
     top: -5px;
 }
 
-.search{
+.search {
     padding: 6px;
     font-size: 17px;
     border: none;
@@ -105,75 +121,134 @@ a{
     text-align: right;
     padding-right: 10px;
 }
-.search-icon{
+
+.search-icon {
     margin-right: 5px;
     font-size: 17px;
     border: none;
     cursor: pointer;
     order: -1;
 }
+
 #formID {
     width: 100%;
     display: flex;
     align-items: center;
-    border-top: none; 
+    border-top: none;
 }
-#formID:hover{
+
+#formID:hover {
     background: white;
 }
 
-@media (min-width:801px){
-    .logo{
+.photos {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.photo-link {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.photo-link img {
+    max-width: 100%;
+    height: auto;
+}
+
+.photo-info {
+    text-align: center;
+}
+
+.photo-info h3 {
+    margin-bottom: 5px;
+}
+
+.photo-info p {
+    color: gray;
+}
+
+@media (max-width: 600px) {
+    .photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .logo {
         order: 3;
     }
-    .toggle{
+
+    .toggle {
         order: 1;
     }
 
-    .search{
+    .search {
         width: 100%;
         border: 1px gray solid;
         border-radius: 3px;
     }
-    #formID{
+
+    #formID {
         width: 70%;
         padding-left: 10px;
         padding-right: 10px;
         order: 2;
     }
+
+    .photos {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-@media (min-width: 1025px){
+@media (min-width: 1025px) {
     .menu .nav-item {
         display: block;
         width: auto;
-        order: 1;
+        order: -1;
         border-top: none;
         justify-content: center;
         border-right: 1px solid gray;
-        padding: 20px 20px 20px 20px;
+        padding: 20px;
     }
+
     .toggle {
         display: none;
     }
-    .logo{
+
+    .logo {
         margin-left: auto;
         order: 3;
     }
 
-    .menu li{
+    .menu li {
         padding: 15px 10px;
     }
 
-    .search{
+    .search {
         width: 100%;
         border: 1px gray solid;
         border-radius: 3px;
     }
-    #formID{
+
+    #formID {
         width: 50%;
         margin-left: 2vw;
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    .photos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .menu li:nth-child(4) {
+        order: -1;
     }
 }
