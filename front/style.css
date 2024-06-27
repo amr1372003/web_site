@@ -118,7 +118,7 @@ a {
 .search {
     padding: 10px;
     font-size: 17px;
-    border: 1px solid #ccc;
+    border: none;
     width: 100%;
     text-align: right;
     padding-right: 10px;
