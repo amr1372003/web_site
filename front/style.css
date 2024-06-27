@@ -1,0 +1,318 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    direction: rtl;
+}
+
+nav {
+    width: 100%;
+    direction: ltr;
+    background: white;
+    padding: 5px 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.menu li {
+    font-size: 16px;
+    padding: 15px 5px;
+}
+
+.menu li a {
+    display: block;
+}
+
+.logo a {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Noto Nastaliq Urdu";
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    order: 1;
+}
+
+.logo {
+    order: 2;
+}
+
+.nav-item {
+    width: 100%;
+    text-align: center;
+    display: none;
+    border-top: 1px gray solid;
+}
+
+#active-site a {
+    color: white;
+}
+
+.navbar .nav-item:hover {
+    background: lightgray;
+}
+
+#active-site {
+    background: gray;
+}
+
+.navbar .nav-item a:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-item.active {
+    display: block;
+}
+
+.toggle {
+    cursor: pointer;
+}
+
+.bars {
+    background: #999;
+    display: inline-block;
+    height: 2px;
+    width: 18px;
+    position: relative;
+}
+
+.bars::before,
+.bars::after {
+    background: #999;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    width: 18px;
+    position: absolute;
+    left: 0;
+}
+
+.bars::before {
+    top: 5px;
+}
+
+.bars::after {
+    top: -5px;
+}
+
+.search {
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.search-icon {
+    margin-right: 5px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    order: -1;
+}
+
+#formID {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-top: none;
+}
+
+#formID:hover {
+    background: white;
+}
+
+.photos {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: center;
+    direction: rtl;
+}
+
+.photo-link {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.photo-link img {
+    max-width: 100%;
+    height: auto;
+}
+
+.photo-info {
+    text-align: center;
+}
+
+.photo-info h3 {
+    margin-bottom: 5px;
+}
+
+.photo-info p {
+    color: gray;
+}
+
+#product {
+    display: flex;
+    margin: 20px;
+}
+
+#product-image{
+    flex: 1; 
+    max-width: 40%;
+    height: auto;
+    margin-left: 10px;
+}
+
+.product-detalis {
+    flex: 1;
+    padding: 0 20px;
+}
+
+#product-name {
+    margin-top: 0;
+}
+
+#product-availability {
+    margin-top: 5px;
+}
+
+#product-description {
+    margin-top: 10px;
+}
+
+
+@media (max-width: 600px) {
+    .photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; 
+    }
+    
+    #product-image {
+        max-width: 100%;
+        height: auto; 
+        margin-bottom: 20px; 
+    }
+    
+    .product-details {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    #product-name {
+        margin-top: 0;
+    }
+    
+    #product-availability {
+        margin-top: 5px;
+    }
+    
+    #product-description {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .logo {
+        order: 3;
+    }
+
+    .toggle {
+        order: 1;
+    }
+
+    .search {
+        width: 100%;
+        border: 1px gray solid;
+        border-radius: 3px;
+    }
+
+    #formID {
+        width: 70%;
+        padding-left: 10px;
+        padding-right: 10px;
+        order: 2;
+    }
+
+    .photos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .menu .nav-item {
+        display: block;
+        width: auto;
+        order: -1;
+        border-top: none;
+        justify-content: center;
+        border-right: 1px solid gray;
+        padding: 20px;
+    }
+
+    .toggle {
+        display: none;
+    }
+
+    .logo {
+        margin-left: auto;
+        order: 3;
+    }
+
+    .menu li {
+        padding: 15px 10px;
+    }
+
+    .search {
+        width: 100%;
+        border: 1px gray solid;
+        border-radius: 3px;
+    }
+
+    #formID {
+        width: 50%;
+        margin-left: 2vw;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-left: none;
+    }
+
+    .photos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .menu li:nth-child(4) {
+        order: -1;
+    }
+}
