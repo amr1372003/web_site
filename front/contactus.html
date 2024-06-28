@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <title>abna2almonofya</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Nastaliq Urdu">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul class="menu">
+                <li class="logo">
+                    <a href="home.html">ابناء المنوفيه</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">home</a>
+                </li>
+                <li class="nav-item" id="active-site">
+                    <a class="nav-link active" aria-current="page" href="contactus.html">اتصل بنا</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="customers.html">العملاء</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">الرئيسيه</a>
+                </li>
+                <form id="formID" onsubmit="return false;">
+                    <input class="search" type="text" placeholder="...بحث" name="search" id="search-input">
+                    <input class="search-icon" type="image" src="search.png" height="15px" width="15px"/>
+                    <div id="suggestions" class="suggestions"></div>
+                </form>
+                <li class="toggle">
+                    <span class="bars"></span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="contact-container">
+            <h1>اتصل بنا</h1>
+            <div class="contact-info">
+                <h2>موقعنا</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509657!2d144.95373631592557!3d-37.81720974262885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727a5c19cbf097!2s123%20Main%20St%2C%20Cityville%20VIC%203001%2C%20Australia!5e0!3m2!1sen!2sus!4v1593574887502!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        aria-hidden="false" 
+                        tabindex="0">
+                    </iframe>
+                </div>
+                <p>123 الشارع الرئيسي، الجناح 500<br>مدينة، ST 12345</p>
+    
+                <h2>أرقام الهاتف</h2>
+                <p><a href="tel:01229791295">01229791295</a><br><a href="tel:01150680580">01150680580</a></p>
+    
+                <h2>البريد الإلكتروني</h2>
+                <p><a href="mailto:amr09660@gmail.com">amr09660@gmail.com</a></p>
+            </div>
+        </div>
+
+
+
+        <div id="footer">
+            <div class="footer-content">
+                <a id = "company-name" href="home.html">ابناء المنوفيه</a>
+                <p id="contact-info">
+                    <a href="tel:01229791295">اتصل بنا:</a> 01229791295 | 
+                    <a href="tel:01150680580"></a> 01150680580
+                </p>
+                <p id="location">
+                    <a href="https://www.google.com/maps/place/العبور">الموقع:</a> العبور
+                </p>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
