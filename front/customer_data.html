@@ -59,33 +59,35 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mapping of usernames to Google Sheets IDs and ranges
+            // Mapping of usernames to Google Sheets IDs, ranges, and sheet IDs (gid)
             const customerSheets = {
                 "amr": {
                     sheetId: "2PACX-1vTjyzJcT3hAfXvQlJ6MNmBZzDYn-JEBQX5bzlR3dgacEPZBc4zDVmLHlEOSgaRCQwIX9AIfAWWF9guF",
-                    range: "J1: P" // Adjust the range as needed
+                    range: "J1:P", // Adjust the range as needed
+                    gid: "567004900"
                 },
                 "saed": {
                     sheetId: "2PACX-1vQKdEg8B1Dr1ZtyEFWR3WgvM4imJYcw5nvQasvg7bGFIHO4MJrHmt4rPVCWugEPtm2GUHqZrBsOg1k2",
-                    range: "A1:H" // Adjust the range as needed
-                },
-                // Add more customers and their respective Google Sheets IDs and ranges as needed
+                    range: "A1:H", // Adjust the range as needed
+                    gid: "814223601"
+                }
+                // Add more customers and their respective Google Sheets IDs, ranges, and gids as needed
             };
-
+    
             function getQueryParameter(name) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(name);
             }
-
+    
             const username = getQueryParameter('username');
             const customerData = customerSheets[username];
-
+    
             if (customerData) {
-                const { sheetId, range } = customerData;
-
-                // Construct the Google Sheets iframe URL with range
+                const { sheetId, range, gid } = customerData;
+    
+                // Construct the Google Sheets iframe URL with range and gid
                 const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=${gid}&single=true&range=${range}`;
-
+                
                 // Create and append the iframe to display the Google Sheets
                 const iframe = document.createElement('iframe');
                 iframe.src = iframeUrl;
@@ -93,7 +95,7 @@
                 iframe.height = '600px'; // Adjust height as needed
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
-
+    
                 document.getElementById('customer-data').appendChild(iframe);
             } else {
                 // Display error message or handle the case where username/customerData is not found
