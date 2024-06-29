@@ -84,7 +84,7 @@
                 const { sheetId, range } = customerData;
 
                 // Construct the Google Sheets iframe URL with range
-                const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=567004900&single=true&range=${range}`;
+                const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=${gid}&single=true&range=${range}`;
 
                 // Create and append the iframe to display the Google Sheets
                 const iframe = document.createElement('iframe');
