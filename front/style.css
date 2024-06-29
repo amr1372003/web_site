@@ -360,7 +360,9 @@ button:hover {
     background-color: #0056b3;
 }
 
+
 .customer-container {
+    text-align: center;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 8px;
@@ -376,8 +378,10 @@ button:hover {
 }
 
 #customer-data {
-    margin-top: 20px;
-    text-align: center;
+    width: 700px;
+    display: inline-block; /* Make sure the container is inline */
+    text-align: left; /* Align the content inside the container to the left (RTL for Arabic) */
+    margin: 0 auto; /* Center align horizontally */
 }
 
 #customer-data iframe {
@@ -451,6 +455,11 @@ button:hover {
 
     .customer-container {
         padding: 10px; /* Adjust padding */
+    }
+    
+    #customer-data {
+        width: 100%; /* Full width on smaller screens */
+        margin: 0; /* Remove any horizontal margins */
     }
 
 }
