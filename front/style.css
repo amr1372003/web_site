@@ -455,9 +455,9 @@ button:hover {
     .customer-container {
         padding: 10px; /* Adjust padding */
     }
-    
+
     #customer-data {
-        width: 100%; /* Full width on smaller screens */
+        width: 450px; /* Full width on smaller screens */
         margin: 0; /* Remove any horizontal margins */
     }
 
@@ -536,4 +536,5 @@ button:hover {
         order: -1;
     }
 }
+
 
