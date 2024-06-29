@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <title>abna2almonofya</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Nastaliq Urdu">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul class="menu">
+                <li class="logo">
+                    <a href="home.html">ابناء المنوفيه</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="contactus.html">اتصل بنا</a>
+                </li>
+                <li class="nav-item" id="active-site">
+                    <a class="nav-link active" aria-current="page" href="customers.html">العملاء</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">الرئيسيه</a>
+                </li>
+                <form id="formID" onsubmit="return false;">
+                    <input class="search" type="text" placeholder="...بحث" name="search" id="search-input">
+                    <input class="search-icon" type="image" src="search.png" height="15px" width="15px"/>
+                    <div id="suggestions" class="suggestions"></div>
+                </form>
+                <li class="toggle">
+                    <span class="bars"></span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="login-container">
+            <h1>تسجيل الدخول</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="show-password">
+                    <label for="show-password">إظهار كلمة المرور</label>
+                </div>
+                <button type="submit">دخول</button>
+            </form>
+        </div>
+
+        <div id="footer">
+            <div class="footer-content">
+                <a id = "company-name" href="home.html">ابناء المنوفيه</a>
+                <p id="contact-info">
+                    <a href="tel:01229791295">اتصل بنا:</a> 01229791295 | amr09660@gmail.com
+                </p>
+                <p id="location">
+                    <a href="https://www.google.com/maps/place/العبور">الموقع:</a> العبور
+                </p>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('show-password').addEventListener('change', function() {
+                var passwordField = document.getElementById('password');
+                if (this.checked) {
+                    passwordField.type = 'text';
+                } else {
+                    passwordField.type = 'password';
+                }
+            });
+    
+            // Define your customers' usernames and passwords
+            const customers = {
+                "amr": { password: "123" },
+                "saed": { password: "1234" },
+                // Add more customers as needed
+            };
+    
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+    
+                // Check if the username exists in the customers object
+                if (customers.hasOwnProperty(username) && customers[username].password === password) {
+                    // Successful login
+                    window.location.href = 'customer_data.html?username=' + encodeURIComponent(username);
+                } else {
+                    // Display error message
+                    var errorMessage = document.getElementById('error-message');
+                    errorMessage.innerHTML = 'اسم المستخدم أو كلمة المرور غير صحيحة.';
+                }
+            });
+        </script>
+
+        <script src="script.js"></script>
+    </body>
+</html>
