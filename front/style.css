@@ -488,6 +488,14 @@ button:hover {
     .photos {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .customer-container {
+        padding: 10px; /* Adjust padding */
+    }
+    #customer-data {
+        width: 100%; /* Full width on smaller screens */
+        margin: 0; /* Remove any horizontal margins */
+    }
 }
 
 @media (min-width: 1025px) {
