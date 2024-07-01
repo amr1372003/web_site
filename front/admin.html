@@ -261,20 +261,32 @@
                 }
             });
 
-            const screenshotBtn = document.getElementById('screenshot-btn');
-            screenshotBtn.addEventListener('click', function() {
-                const customerIframe = document.getElementById('customer-iframe');
-                if (customerIframe && customerIframe.contentWindow.document.body) {
-                    html2canvas(customerIframe.contentWindow.document.body).then(canvas => {
-                        const link = document.createElement('a');
-                        link.download = 'screenshot.png';
-                        link.href = canvas.toDataURL();
-                        link.click();
-                    });
-                } else {
-                    alert('لا يوجد محتوى لالتقاط لقطة شاشة.');
-                }
-            });
+            // Select the button and iframe elements
+const screenshotBtn = document.getElementById('screenshot-btn');
+//const excelFrame = document.getElementById('excelFrame');
+
+// Add click event listener to the button
+screenshotBtn.addEventListener('click', function() {
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas dimensions to match iframe dimensions
+    canvas.width = excelFrame.clientWidth;
+    canvas.height = excelFrame.clientHeight;
+
+    // Draw iframe content onto the canvas
+    ctx.drawImage(excelFrame, 0, 0, canvas.width, canvas.height);
+
+    // Convert canvas to data URL
+    const dataURL = canvas.toDataURL('image/png');
+
+    // Create a temporary link element to download the screenshot
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'screenshot.png';
+    link.click();
+});
         });
     </script>
 </body>
