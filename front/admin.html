@@ -103,33 +103,54 @@
             background-color: #45a049;
         }
         @media (max-width: 600px) {
-            .customer-container {
-                padding: 10px;
-            }
-            #customer-data {
-                width: 100%;
-                margin: 0;
-            }
-            #customer-data iframe {
-                width: 100%;
-            }
-            .user-list {
-                grid-template-columns: 1fr;
-                gap: 5px;
-            }
-            .user-list li {
-                padding: 8px;
-                font-size: 14px;
-            }
-            #search-input {
-                width: 90%;
-                font-size: 14px;
-            }
-            #screenshot-btn {
-                width: 90%;
-                font-size: 14px;
-            }
-        }
+    .customer-container {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #customer-data {
+        padding: 10px;
+        width: 100%;
+        margin: 0;
+    }
+
+    #customer-data iframe {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .user-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .user-list li {
+        width: 70%;
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #search-input {
+        width: 90%;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    #screenshot-btn {
+        width: 50%;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -157,6 +178,7 @@
         <button class="screenshot-btn" id="screenshot-btn">التقاط لقطة شاشة</button>
     </div>
 
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mapping of usernames to Google Sheets IDs, ranges, and sheet IDs (gid)
@@ -232,7 +254,7 @@
                     gid: "514380165"
                 },
                 // Add more customers and their respective Google Sheets IDs, ranges, and gids as needed
-            };
+            };            
 
             function displayUserData(username) {
                 const customerData = customerSheets[username];
@@ -242,6 +264,7 @@
                     const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=${gid}&single=true&range=${range}`;
                     const iframe = document.createElement('iframe');
                     iframe.src = iframeUrl;
+                    iframe.id = 'customer-iframe'; // Add id to iframe for easier access
                     iframe.width = '100%';
                     iframe.height = '600px';
                     iframe.frameBorder = '0';
@@ -288,9 +311,9 @@
 
             const screenshotBtn = document.getElementById('screenshot-btn');
             screenshotBtn.addEventListener('click', function() {
-                const iframe = document.querySelector('#customer-data iframe');
-                if (iframe) {
-                    html2canvas(iframe.contentWindow.document.body).then(canvas => {
+                const customerIframe = document.getElementById('customer-iframe');
+                if (customerIframe && customerIframe.contentWindow.document.body) {
+                    html2canvas(customerIframe.contentWindow.document.body).then(canvas => {
                         const link = document.createElement('a');
                         link.download = 'screenshot.png';
                         link.href = canvas.toDataURL();
@@ -302,6 +325,5 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
