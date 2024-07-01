@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المدير</title>
+    <style>
+        body {
+            direction: rtl;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .customer-container {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+        .customer-container h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .user-list {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .user-list li {
+            cursor: pointer;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .user-list li:hover {
+            background-color: #45a049;
+        }
+        .user-list li:active {
+            background-color: #3e8e41;
+        }
+        .user-list li.active {
+            background-color: gray;
+        }
+        #customer-data {
+            width: 100%;
+            max-width: 700px;
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
+        }
+        #customer-data iframe {
+            display: block;
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #search-input {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .customer-container {
+                padding: 10px;
+            }
+            #customer-data {
+                width: 100%;
+                margin: 0;
+            }
+            #customer-data iframe {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="customer-container">
+        <h1>لوحة تحكم المدير</h1>
+        <input type="text" id="search-input" placeholder="ابحث عن اسم العميل...">
+        <ul class="user-list" id="user-list">
+            <li data-username="ديفيد">ديفيد</li>
+            <li data-username="احمد عبد الرحمن">احمد عبد الرحمن</li>
+            <li data-username="عماد بولى استر شفاف">عماد بولى استر شفاف</li>
+            <li data-username="سيد المنصوره">سيد المنصوره</li>
+            <li data-username="عادل دشت">عادل دشت</li>
+            <li data-username="دنيال فرج">دنيال فرج</li>
+            <li data-username="خالد و عز">خالد و عز</li>
+            <li data-username="شركه النور">شركه النور</li>
+            <!-- Add more users here -->
+        </ul>
+        <div id="customer-data"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mapping of usernames to Google Sheets IDs, ranges, and sheet IDs (gid)
+            const customerSheets = {
+                "ديفيد": {
+                    sheetId: "2PACX-1vSRf_1zDFQpDt3-xEwljVSDwjJUQbVY24D84I9AjB8cYEDOerqDX4ykwfHbj1PCSOe48RUk3i3N0n6k",
+                    range: "J1:P", // Adjust the range as needed
+                    gid: "1418189123"
+                },
+                "احمد عبد الرحمن": {
+                    sheetId: "2PACX-1vTRtzMPy5lNLcztMe_JqGBoJDwg-Xzw3MjUcPmVIUfBAmxlcIXdzgKvmUsykngJ34sxZUvHDdspDTxm",
+                    range: "A1:H", // Adjust the range as needed
+                    gid: "483092912"
+                },
+                "عماد بولى استر شفاف": {
+                    sheetId: "2PACX-1vRwsMovAAhdpvoR1Q1H3PuKcGxkY8RsU4EIQd-pnu1zejkNXRwbzZ3FaS0H2bDTxmaGzNBeBtp-T69d",
+                    range: "G1:M", // Adjust the range as needed
+                    gid: "789173685"
+                },
+                "سيد المنصوره": {
+                    sheetId: "2PACX-1vTYHMFzg1pIrG_CUkBvzBNC8-EqzmfhLX9rXUTjxq4VAPb876uemo1DxpWxfG95Kcvc_nNnS7QFtejf",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "178774507"
+                },
+                "عادل دشت": {
+                    sheetId: "2PACX-1vSj0a1cB7FnWnDP-C9Fhw3tDIslCPWe5TyfQXg0jSPuhpnmQdy_WlY7C8fXPSdcWzhfEP_TAsW0C_ZN",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "962355004"
+                },
+                "دنيال فرج": {
+                    sheetId: "2PACX-1vQBjO1tmoEpIetgBIynfeJUtCJvNj--jqzsE6uIA0Gpb630kQVdIop8CqD12NNucJrgQA_zpEtvfc6t",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "1264633400"
+                },
+                "خالد و عز": {
+                    sheetId: "2PACX-1vQvg3FjTS1ma3QHntAHU_KhD9o9PSR_sJuW4WsQqY-_hy67T62HV2_TmLO-IS80tSlhHVm99nxkmj_y",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "536857655"
+                },
+                "شركه النور": {
+                    sheetId: "2PACX-1vTGfOdESSLJRzWvTMJwLu5y658MtLL-k_HKJMpTt6SsJbJedG4R_nAMyxeqmb5MNdrEKbsTglBSddi8",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "584270843"
+                },
+                // Add more customers and their respective Google Sheets IDs, ranges, and gids as needed
+            };
+
+            function displayUserData(username) {
+                const customerData = customerSheets[username];
+
+                if (customerData) {
+                    const { sheetId, range, gid } = customerData;
+
+                    // Construct the Google Sheets iframe URL with range and gid
+                    const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=${gid}&single=true&range=${range}`;
+
+                    // Create and append the iframe to display the Google Sheets
+                    const iframe = document.createElement('iframe');
+                    iframe.src = iframeUrl;
+                    iframe.width = '100%';
+                    iframe.height = '600px'; // Adjust height as needed
+                    iframe.frameBorder = '0';
+                    iframe.allowFullscreen = true;
+
+                    const customerDataDiv = document.getElementById('customer-data');
+                    customerDataDiv.innerHTML = ''; // Clear previous data
+                    customerDataDiv.appendChild(iframe);
+                } else {
+                    // Display error message or handle the case where username/customerData is not found
+                    alert('اسم المستخدم غير موجود أو الملف غير متاح.');
+                }
+            }
+
+            // Function to filter user list based on search input
+            function filterUsers(searchTerm) {
+                const items = document.querySelectorAll('.user-list li');
+                items.forEach(item => {
+                    const username = item.getAttribute('data-username');
+                    if (username.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listener for the search input
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function(event) {
+                const searchTerm = event.target.value.trim();
+                filterUsers(searchTerm);
+            });
+
+            // Event listener for user list items
+            const userList = document.getElementById('user-list');
+            userList.addEventListener('click', function(event) {
+                if (event.target && event.target.nodeName === "LI") {
+                    // Remove 'active' class from all list items
+                    const items = document.querySelectorAll('.user-list li');
+                    items.forEach(item => item.classList.remove('active'));
+
+                    // Add 'active' class to the clicked item
+                    event.target.classList.add('active');
+
+                    const username = event.target.getAttribute('data-username');
+                    displayUserData(username);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
