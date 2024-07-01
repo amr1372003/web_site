@@ -35,15 +35,17 @@
             text-align: center;
         }
         .user-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             list-style: none;
             padding: 0;
             width: 100%;
-            max-width: 300px;
+            max-width: 600px;
             margin: 20px auto;
         }
         .user-list li {
             cursor: pointer;
-            margin: 5px 0;
             padding: 10px;
             background-color: #4CAF50;
             color: #fff;
@@ -85,6 +87,21 @@
             border-radius: 5px;
             text-align: center;
         }
+        #screenshot-btn {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #screenshot-btn:hover {
+            background-color: #45a049;
+        }
         @media (max-width: 600px) {
             .customer-container {
                 padding: 10px;
@@ -95,6 +112,22 @@
             }
             #customer-data iframe {
                 width: 100%;
+            }
+            .user-list {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+            .user-list li {
+                padding: 8px;
+                font-size: 14px;
+            }
+            #search-input {
+                width: 90%;
+                font-size: 14px;
+            }
+            #screenshot-btn {
+                width: 90%;
+                font-size: 14px;
             }
         }
     </style>
@@ -112,9 +145,16 @@
             <li data-username="دنيال فرج">دنيال فرج</li>
             <li data-username="خالد و عز">خالد و عز</li>
             <li data-username="شركه النور">شركه النور</li>
+            <li data-username="عاطف جرجس">عاطف جرجس</li>
+            <li data-username="خالد حمدى">خالد حمدى</li>
+            <li data-username="برنت باك عادل فارس">برنت باك عادل فارس</li>
+            <li data-username="امين كمال">امين كمال</li>
+            <li data-username="محمد العبد">محمد العبد</li>
+            <li data-username="ام احمد">ام احمد</li>
             <!-- Add more users here -->
         </ul>
         <div id="customer-data"></div>
+        <button class="screenshot-btn" id="screenshot-btn">التقاط لقطة شاشة</button>
     </div>
 
     <script>
@@ -161,6 +201,36 @@
                     range: "I1:O", // Adjust the range as needed
                     gid: "584270843"
                 },
+                "عاطف جرجس": {
+                    sheetId: "2PACX-1vTJ6iRST5bIp_0L7clyOXH2RLinsb1WIvWxl_EMu-M7kqdI0KSsv7mTqn7Bd8QcZY2NqGeAj7dXaYY6",
+                    range: "K1:Q", // Adjust the range as needed
+                    gid: "1949589517"
+                },
+                "خالد حمدى": {
+                    sheetId: "2PACX-1vSOmRWAlrPsL-_AODO4A_B3doYvWRJTmJhRGSnzbpJN1YNsBq48bZLeQ4x52swzjWrdXQs93l99uwfv",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "323936109"
+                },
+                "برنت باك عادل فارس": {
+                    sheetId: "2PACX-1vQPFYftovX0dX_ApqgXObGQsZ6qVZlxho-XyNjULELREnsHW0eVaQY8pUSvWAyAaz_-YQvxuciuJX_H",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "702642960"
+                },
+                "امين كمال": {
+                    sheetId: "2PACX-1vTyFW7DISSPhqxWLJ7V3VOd6IGZFHrahmvNISGrqnV917_VWsM28Gl3NF31XO3h7FnWK9-DU1Eusli7",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "441271468"
+                },
+                "ام احمد": {
+                    sheetId: "2PACX-1vStfNfNlOD5sdybyqEoKoVInWyAAjVBp1eAbIQXgkPz4m8-T6G-1jGTknaSlzjH0EPWr8d_MsrcjQUV",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "1940454898"
+                },
+                "محمد العبد": {
+                    sheetId: "2PACX-1vTY2p2D3FOPSYCgjV8ZULWOAHy08VcUngGEVQJJi5swkfBS3BA3cbrj3dEo-sqJk2hOQKSZ5NZQw852",
+                    range: "I1:O", // Adjust the range as needed
+                    gid: "514380165"
+                },
                 // Add more customers and their respective Google Sheets IDs, ranges, and gids as needed
             };
 
@@ -169,28 +239,22 @@
 
                 if (customerData) {
                     const { sheetId, range, gid } = customerData;
-
-                    // Construct the Google Sheets iframe URL with range and gid
                     const iframeUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pubhtml?gid=${gid}&single=true&range=${range}`;
-
-                    // Create and append the iframe to display the Google Sheets
                     const iframe = document.createElement('iframe');
                     iframe.src = iframeUrl;
                     iframe.width = '100%';
-                    iframe.height = '600px'; // Adjust height as needed
+                    iframe.height = '600px';
                     iframe.frameBorder = '0';
                     iframe.allowFullscreen = true;
 
                     const customerDataDiv = document.getElementById('customer-data');
-                    customerDataDiv.innerHTML = ''; // Clear previous data
+                    customerDataDiv.innerHTML = '';
                     customerDataDiv.appendChild(iframe);
                 } else {
-                    // Display error message or handle the case where username/customerData is not found
                     alert('اسم المستخدم غير موجود أو الملف غير متاح.');
                 }
             }
 
-            // Function to filter user list based on search input
             function filterUsers(searchTerm) {
                 const items = document.querySelectorAll('.user-list li');
                 items.forEach(item => {
@@ -203,29 +267,41 @@
                 });
             }
 
-            // Event listener for the search input
             const searchInput = document.getElementById('search-input');
             searchInput.addEventListener('input', function(event) {
                 const searchTerm = event.target.value.trim();
                 filterUsers(searchTerm);
             });
 
-            // Event listener for user list items
             const userList = document.getElementById('user-list');
             userList.addEventListener('click', function(event) {
                 if (event.target && event.target.nodeName === "LI") {
-                    // Remove 'active' class from all list items
                     const items = document.querySelectorAll('.user-list li');
                     items.forEach(item => item.classList.remove('active'));
 
-                    // Add 'active' class to the clicked item
                     event.target.classList.add('active');
 
                     const username = event.target.getAttribute('data-username');
                     displayUserData(username);
                 }
             });
+
+            const screenshotBtn = document.getElementById('screenshot-btn');
+            screenshotBtn.addEventListener('click', function() {
+                const iframe = document.querySelector('#customer-data iframe');
+                if (iframe) {
+                    html2canvas(iframe.contentWindow.document.body).then(canvas => {
+                        const link = document.createElement('a');
+                        link.download = 'screenshot.png';
+                        link.href = canvas.toDataURL();
+                        link.click();
+                    });
+                } else {
+                    alert('لا يوجد محتوى لالتقاط لقطة شاشة.');
+                }
+            });
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
